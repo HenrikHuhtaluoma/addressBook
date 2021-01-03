@@ -3,7 +3,7 @@
 import sqlite3
 from sqlite3 import Error
 
-#Create SQLite connection
+#Create SQLite connection.
 def createConnection(dbFile):
     conn = None
     try:
@@ -12,7 +12,7 @@ def createConnection(dbFile):
         print(e)
 
     return conn
-#Creating query for adding a new contact
+#Creating query for adding a new contact.
 def creteContact(conn, contact):
     
     sql = """ INSERT INTO contacts(contact_id,first_name,last_name,email,phone)
@@ -21,19 +21,19 @@ def creteContact(conn, contact):
     cur.execute(sql, contact)
     conn.commit()
 
-#Selection screen for which of the to modes you want to use view/edit
+#Selection screen for which of the to modes you want to use view/edit.
 def selectionScreen():
 
     print("Press 1 to view existing contacts or 2 to add new.")
     selection = input(":")
     return(selection)
 
-
+#Asking user for contact details.
 def addContact(database):
 
     conn = createConnection(database)
     with conn:
-
+        #Checking amount of entries to generate userId.
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM contacts")
         results = cursor.fetchall()
@@ -45,7 +45,7 @@ def addContact(database):
         email = input("Give email:")
         contact = (userId, firstName, lastName, email, phoneNumber)
         creteContact(conn, contact)
-
+#Printing existing contacts in db.
 def viewContacts(database):
 
     conn = createConnection(database)
@@ -59,7 +59,8 @@ def viewContacts(database):
 def main():
 
     while True:
-        database = "YOUR_DB_PATH_HERE"
+        #replace YOUR_DB_PATH with the full path of your sqlite .db file. r"YOUR_DB_PATH" in windows for escaping \.
+        database = "YOUR_DB_PATH"
         selection  = selectionScreen()
         if selection == "2":
             addContact(database)
