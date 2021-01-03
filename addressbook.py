@@ -1,5 +1,5 @@
 
-#Henrik Huhtaluoma
+#Author: Henrik Huhtaluoma
 import sqlite3
 from sqlite3 import Error
 
@@ -31,7 +31,6 @@ def selectionScreen():
 
 def addContact(database):
 
-    
     conn = createConnection(database)
     with conn:
 
@@ -49,7 +48,6 @@ def addContact(database):
 
 def viewContacts(database):
 
-    
     conn = createConnection(database)
     with conn:
         cursor = conn.cursor()
@@ -59,6 +57,7 @@ def viewContacts(database):
         print(result)
 
 def main():
+
     while True:
         database = "YOUR_DB_PATH_HERE"
         selection  = selectionScreen()
